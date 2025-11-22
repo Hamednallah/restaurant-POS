@@ -10,6 +10,6 @@ Included:
 - README.txt
 
 To run:
-1. Install JDK 17 and set JAVA_HOME
+1. Install JDK 17 and set JAVA_HOME (change it to 21)
 2. cd scaffold
 3. ./gradlew run
