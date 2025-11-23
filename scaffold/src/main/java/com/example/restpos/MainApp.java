@@ -1,10 +1,6 @@
 package com.example.restpos;
 
 import atlantafx.base.theme.PrimerLight;
-import com.example.restpos.dao.UserDAO;
-import com.example.restpos.db.Database;
-import com.example.restpos.models.User;
-import com.example.restpos.ui.LoginScreen;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -17,22 +13,43 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
 
     private static final String CSS_PATH = "styles.css";
-    private User currentUser;
 
     @Override
     public void start(Stage primaryStage) {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
 
-        // Initialize the database and create a default user
-        Database.createTables();
-        if (UserDAO.getUserByUsername("admin") == null) {
-            UserDAO.createUser("admin", "password", "Admin User", "admin");
-        }
+        BorderPane root = new BorderPane();
+        root.setPadding(new Insets(10));
 
-        // Create the login screen
-        LoginScreen loginScreen = new LoginScreen(primaryStage, this::login);
+        // Create a collapsible side panel
+        VBox sidePanel = new VBox(10);
+        sidePanel.setPadding(new Insets(10));
+        sidePanel.getStyleClass().add("side-panel");
 
-        Scene scene = new Scene(loginScreen, 1024, 700);
+        Button toggleButton = new Button("Toggle Panel");
+        toggleButton.setOnAction(e -> {
+            if (root.getLeft() == null) {
+                root.setLeft(sidePanel);
+            } else {
+                root.setLeft(null);
+            }
+        });
+
+        Label titleLabel = new Label("Restaurant POS");
+        titleLabel.getStyleClass().add("title");
+
+        sidePanel.getChildren().addAll(
+                new Label("Navigation"),
+                new Button("Dashboard"),
+                new Button("POS"),
+                new Button("Settings")
+        );
+
+        root.setTop(toggleButton);
+        root.setCenter(titleLabel);
+        root.setLeft(sidePanel);
+
+        Scene scene = new Scene(root, 1024, 700);
         scene.getStylesheets().add(getClass().getResource(CSS_PATH).toExternalForm());
         primaryStage.setTitle("Restaurant POS");
         primaryStage.setScene(scene);
