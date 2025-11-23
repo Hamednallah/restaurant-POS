@@ -1,0 +1,13 @@
+# IDE
+.idea/
+*.iml
+*.iws
+
+# Build
+build/
+.gradle/
+
+# Local files
+*.log
+*.db
+settings.properties
