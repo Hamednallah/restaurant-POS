@@ -1,12 +1,13 @@
-.gradle/
-build/
+# IDE
 .idea/
 *.iml
-out/
+*.iws
+
+# Build
+build/
+.gradle/
+
+# Local files
 *.log
-*.tmp
-*.bak
-*.swp
-*~
-*.orig
-*.rej
+*.db
+settings.properties
