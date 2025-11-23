@@ -9,11 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.example.restpos.models.User;
 
 public class MainApp extends Application {
 
     private static final String CSS_PATH = "styles.css";
-
+    private User currentUser;
+    
     @Override
     public void start(Stage primaryStage) {
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
