@@ -4,6 +4,7 @@ import atlantafx.base.theme.PrimerLight;
 import com.example.restpos.dao.UserDAO;
 import com.example.restpos.db.Database;
 import com.example.restpos.models.User;
+import com.example.restpos.ui.ExpenseManagementScreen;
 import com.example.restpos.ui.LoginScreen;
 import com.example.restpos.ui.POSScreen;
 import com.example.restpos.ui.ProductManagementScreen;
@@ -61,6 +62,7 @@ public class MainApp extends Application {
         if (currentUser != null && "admin".equals(currentUser.getRole())) {
             sidePanel.addNavigationButton("Product Management", FontAwesomeSolid.BOX, () -> root.setCenter(new ProductManagementScreen()));
         }
+        sidePanel.addNavigationButton("Expense Management", FontAwesomeSolid.MONEY_BILL_WAVE, () -> root.setCenter(new ExpenseManagementScreen()));
         sidePanel.addNavigationButton("Settings", FontAwesomeSolid.COG, () -> root.setCenter(new Label("Settings")));
 
         root.setCenter(titleLabel);

@@ -37,8 +37,10 @@ public class SidePanel extends VBox {
     }
 
     public void addNavigationButton(String text, FontAwesomeSolid icon, Runnable action) {
+        FontIcon fontIcon = new FontIcon(icon);
+        fontIcon.setIconSize(24);
         Button button = new Button(text);
-        button.setGraphic(new FontIcon(icon));
+        button.setGraphic(fontIcon);
         button.getStyleClass().add("navigation-button");
         button.setOnAction(e -> {
             setSelectedButton(button);
@@ -66,7 +68,7 @@ public class SidePanel extends VBox {
     private void toggle() {
         collapsed = !collapsed;
 
-        double targetWidth = collapsed ? 80 : 250;
+        double targetWidth = collapsed ? 100 : 250;
         Timeline timeline = new Timeline();
         KeyValue keyValue = new KeyValue(prefWidthProperty(), targetWidth);
         KeyFrame keyFrame = new KeyFrame(Duration.millis(200), keyValue);
