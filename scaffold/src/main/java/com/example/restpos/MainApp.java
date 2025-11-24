@@ -10,9 +10,11 @@ import com.example.restpos.ui.SidePanel;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import com.example.restpos.models.User;
 
 public class MainApp extends Application {
 
