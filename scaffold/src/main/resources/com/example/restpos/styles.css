@@ -13,10 +13,30 @@
     -fx-background-color: #E3DCD2; /* Almond */
     -fx-border-color: #D2B48C; /* Tan */
     -fx-border-width: 0 1 0 0;
+    -fx-pref-width: 250px;
 }
 
-.title {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
+.side-panel.collapsed {
+    -fx-pref-width: 80px;
+}
+
+.navigation-button {
+    -fx-background-color: transparent;
     -fx-text-fill: #36454F; /* Charcoal */
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.navigation-button:hover {
+    -fx-background-color: #D2B48C; /* Tan */
+}
+
+.login-screen {
+    -fx-background-color: #F5F5DC; /* Beige */
+}
+
+.login-button {
+    -fx-background-color: #8B4513; /* SaddleBrown */
+    -fx-text-fill: white;
 }

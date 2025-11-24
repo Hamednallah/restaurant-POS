@@ -14,6 +14,8 @@ java {
 }
 
 dependencies {
+    implementation("org.kordamp.ikonli:ikonli-javafx:12.4.0")
+    implementation("org.kordamp.ikonli:ikonli-fontawesome5-pack:12.4.0")
     implementation("io.github.mkpaz:atlantafx-base:2.1.0")
     implementation("org.xerial:sqlite-jdbc:3.40.0.0")
     implementation("org.openjfx:javafx-controls:21.0.2")
@@ -37,4 +39,9 @@ javafx {
 
 tasks.test {
     useJUnitPlatform()
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    }
 }

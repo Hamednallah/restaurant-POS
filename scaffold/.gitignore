@@ -1,3 +1,10 @@
+out/
+*.tmp
+*.bak
+*.swp
+*~
+*.orig
+*.rej
 # IDE
 .idea/
 *.iml
