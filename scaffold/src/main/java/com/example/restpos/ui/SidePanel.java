@@ -11,7 +11,9 @@ import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SidePanel extends VBox {
@@ -19,6 +21,8 @@ public class SidePanel extends VBox {
     private boolean collapsed = false;
     private User currentUser;
     private Map<Button, String> buttonTextMap = new HashMap<>();
+    private List<Button> navigationButtons = new ArrayList<>();
+    private Button selectedButton;
 
     public SidePanel(User currentUser) {
         this.currentUser = currentUser;
@@ -36,9 +40,27 @@ public class SidePanel extends VBox {
         Button button = new Button(text);
         button.setGraphic(new FontIcon(icon));
         button.getStyleClass().add("navigation-button");
-        button.setOnAction(e -> action.run());
+        button.setOnAction(e -> {
+            setSelectedButton(button);
+            action.run();
+        });
         buttonTextMap.put(button, text);
+        navigationButtons.add(button);
         getChildren().add(button);
+    }
+
+    public List<Button> getNavigationButtons() {
+        return navigationButtons;
+    }
+
+    public void setSelectedButton(Button button) {
+        if (selectedButton != null) {
+            selectedButton.getStyleClass().remove("selected");
+        }
+        selectedButton = button;
+        if (selectedButton != null) {
+            selectedButton.getStyleClass().add("selected");
+        }
     }
 
     private void toggle() {

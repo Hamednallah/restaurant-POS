@@ -5,6 +5,7 @@ import com.example.restpos.dao.UserDAO;
 import com.example.restpos.db.Database;
 import com.example.restpos.models.User;
 import com.example.restpos.ui.LoginScreen;
+import com.example.restpos.ui.POSScreen;
 import com.example.restpos.ui.ProductManagementScreen;
 import com.example.restpos.ui.SidePanel;
 import javafx.application.Application;
@@ -56,7 +57,7 @@ public class MainApp extends Application {
         titleLabel.getStyleClass().add("title");
 
         sidePanel.addNavigationButton("Dashboard", FontAwesomeSolid.HOME, () -> root.setCenter(new Label("Dashboard")));
-        sidePanel.addNavigationButton("POS", FontAwesomeSolid.DESKTOP, () -> root.setCenter(new Label("POS")));
+        sidePanel.addNavigationButton("POS", FontAwesomeSolid.DESKTOP, () -> root.setCenter(new POSScreen()));
         if (currentUser != null && "admin".equals(currentUser.getRole())) {
             sidePanel.addNavigationButton("Product Management", FontAwesomeSolid.BOX, () -> root.setCenter(new ProductManagementScreen()));
         }

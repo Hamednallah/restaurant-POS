@@ -28,6 +28,11 @@
     -fx-background-color: #D2B48C; /* Tan */
 }
 
+.navigation-button.selected {
+    -fx-background-color: #8B4513; /* SaddleBrown */
+    -fx-text-fill: white;
+}
+
 .login-screen {
     -fx-background-color: #F5F5DC; /* Beige */
 }
@@ -35,4 +40,13 @@
 .login-button {
     -fx-background-color: #8B4513; /* SaddleBrown */
     -fx-text-fill: white;
+}
+
+.product-button {
+    -fx-background-color: #D2B48C; /* Tan */
+    -fx-text-fill: #36454F; /* Charcoal */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
 }
