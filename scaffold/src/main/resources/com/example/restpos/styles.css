@@ -16,10 +16,6 @@
     -fx-pref-width: 250px;
 }
 
-.side-panel.collapsed {
-    -fx-pref-width: 80px;
-}
-
 .navigation-button {
     -fx-background-color: transparent;
     -fx-text-fill: #36454F; /* Charcoal */

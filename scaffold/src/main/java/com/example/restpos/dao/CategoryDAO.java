@@ -2,6 +2,8 @@ package com.example.restpos.dao;
 
 import com.example.restpos.db.Database;
 import com.example.restpos.models.Category;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +14,8 @@ import java.util.List;
 
 public class CategoryDAO {
 
+    private static final Logger log = LoggerFactory.getLogger(CategoryDAO.class);
+
     public static void createCategory(String name) {
         String sql = "INSERT INTO categories(name) VALUES(?)";
 
@@ -20,7 +24,7 @@ public class CategoryDAO {
             pstmt.setString(1, name);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error creating category", e);
         }
     }
 
@@ -40,7 +44,7 @@ public class CategoryDAO {
                 categories.add(category);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error getting all categories", e);
         }
         return categories;
     }
@@ -54,7 +58,7 @@ public class CategoryDAO {
             pstmt.setInt(2, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error updating category", e);
         }
     }
 
@@ -66,7 +70,7 @@ public class CategoryDAO {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error deleting category", e);
         }
     }
 }

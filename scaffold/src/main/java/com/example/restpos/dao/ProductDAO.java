@@ -2,6 +2,8 @@ package com.example.restpos.dao;
 
 import com.example.restpos.db.Database;
 import com.example.restpos.models.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductDAO.class);
 
     public static void createProduct(String code, String nameAr, String nameEn, int categoryId, double price, String printerGroup, boolean active) {
         String sql = "INSERT INTO products(code, name_ar, name_en, category_id, price, printer_group, active) VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -26,7 +30,7 @@ public class ProductDAO {
             pstmt.setBoolean(7, active);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error creating product", e);
         }
     }
 
@@ -52,7 +56,7 @@ public class ProductDAO {
                 products.add(product);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error getting all products", e);
         }
         return products;
     }
@@ -72,7 +76,7 @@ public class ProductDAO {
             pstmt.setInt(8, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error updating product", e);
         }
     }
 
@@ -84,7 +88,7 @@ public class ProductDAO {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error deleting product", e);
         }
     }
 }

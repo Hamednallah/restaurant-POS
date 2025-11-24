@@ -3,6 +3,8 @@ package com.example.restpos.dao;
 import com.example.restpos.db.Database;
 import com.example.restpos.models.User;
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO {
+
+    private static final Logger log = LoggerFactory.getLogger(UserDAO.class);
 
     public static void createUser(String username, String password, String fullName, String role) {
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
@@ -23,7 +27,7 @@ public class UserDAO {
             pstmt.setString(4, role);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error creating user", e);
         }
     }
 
@@ -46,7 +50,7 @@ public class UserDAO {
                 );
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            log.error("Error getting user by username", e);
         }
         return user;
     }

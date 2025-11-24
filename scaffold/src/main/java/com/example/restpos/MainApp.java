@@ -14,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import com.example.restpos.models.User;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
 public class MainApp extends Application {
 
@@ -48,7 +48,6 @@ public class MainApp extends Application {
 
     private void showMainApp(Stage primaryStage) {
         BorderPane root = new BorderPane();
-        root.setPadding(new Insets(10));
 
         SidePanel sidePanel = new SidePanel(currentUser);
         root.setLeft(sidePanel);
@@ -56,20 +55,12 @@ public class MainApp extends Application {
         Label titleLabel = new Label("Restaurant POS");
         titleLabel.getStyleClass().add("title");
 
-        // Add event handlers for the navigation buttons
-        sidePanel.getChildren().forEach(node -> {
-            if (node instanceof javafx.scene.control.Button) {
-                javafx.scene.control.Button button = (javafx.scene.control.Button) node;
-                button.setOnAction(e -> {
-                    String text = button.getText();
-                    if ("Product Management".equals(text)) {
-                        root.setCenter(new ProductManagementScreen());
-                    } else {
-                        root.setCenter(new Label(text));
-                    }
-                });
-            }
-        });
+        sidePanel.addNavigationButton("Dashboard", FontAwesomeSolid.HOME, () -> root.setCenter(new Label("Dashboard")));
+        sidePanel.addNavigationButton("POS", FontAwesomeSolid.DESKTOP, () -> root.setCenter(new Label("POS")));
+        if (currentUser != null && "admin".equals(currentUser.getRole())) {
+            sidePanel.addNavigationButton("Product Management", FontAwesomeSolid.BOX, () -> root.setCenter(new ProductManagementScreen()));
+        }
+        sidePanel.addNavigationButton("Settings", FontAwesomeSolid.COG, () -> root.setCenter(new Label("Settings")));
 
         root.setCenter(titleLabel);
         primaryStage.getScene().setRoot(root);

@@ -1,23 +1,27 @@
 package com.example.restpos.ui;
 
 import com.example.restpos.models.User;
-import javafx.animation.TranslateTransition;
-import javafx.geometry.Insets;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SidePanel extends VBox {
 
     private boolean collapsed = false;
     private User currentUser;
+    private Map<Button, String> buttonTextMap = new HashMap<>();
 
     public SidePanel(User currentUser) {
         this.currentUser = currentUser;
-        setPadding(new Insets(10));
         setSpacing(20);
         getStyleClass().add("side-panel");
 
@@ -26,32 +30,37 @@ public class SidePanel extends VBox {
         toggleButton.setOnAction(e -> toggle());
 
         getChildren().add(toggleButton);
-        addNavigationButton("Dashboard", FontAwesomeSolid.HOME);
-        addNavigationButton("POS", FontAwesomeSolid.DESKTOP);
-        if (currentUser != null && "admin".equals(currentUser.getRole())) {
-            addNavigationButton("Product Management", FontAwesomeSolid.BOX);
-        }
-        addNavigationButton("Settings", FontAwesomeSolid.COG);
     }
 
-    private void addNavigationButton(String text, FontAwesomeSolid icon) {
+    public void addNavigationButton(String text, FontAwesomeSolid icon, Runnable action) {
         Button button = new Button(text);
         button.setGraphic(new FontIcon(icon));
         button.getStyleClass().add("navigation-button");
+        button.setOnAction(e -> action.run());
+        buttonTextMap.put(button, text);
         getChildren().add(button);
     }
 
     private void toggle() {
         collapsed = !collapsed;
-        for (javafx.scene.Node node : getChildren()) {
-            if (node instanceof Button) {
-                Button button = (Button) node;
+
+        double targetWidth = collapsed ? 80 : 250;
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(prefWidthProperty(), targetWidth);
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(200), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setOnFinished(event -> {
+            for (Map.Entry<Button, String> entry : buttonTextMap.entrySet()) {
+                Button button = entry.getKey();
                 if (collapsed) {
-                    button.setContentDisplay(javafx.scene.control.ContentDisplay.GRAPHIC_ONLY);
+                    button.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+                    button.setText("");
                 } else {
-                    button.setContentDisplay(javafx.scene.control.ContentDisplay.LEFT);
+                    button.setContentDisplay(ContentDisplay.LEFT);
+                    button.setText(entry.getValue());
                 }
             }
-        }
+        });
+        timeline.play();
     }
 }
