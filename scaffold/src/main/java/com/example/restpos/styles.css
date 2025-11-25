@@ -1,0 +1,22 @@
+.root {
+    -fx-base: #F5F5DC; /* Beige */
+    -fx-background: #F5F5DC;
+    -fx-control-inner-background: #E3DCD2; /* Almond */
+    -fx-accent: #8B4513; /* SaddleBrown */
+    -fx-default-button: #8B4513;
+    -fx-focus-color: #8B4513;
+    -fx-faint-focus-color: #8B451322;
+    -fx-text-background-color: #36454F; /* Charcoal */
+}
+
+.side-panel {
+    -fx-background-color: #E3DCD2; /* Almond */
+    -fx-border-color: #D2B48C; /* Tan */
+    -fx-border-width: 0 1 0 0;
+}
+
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #36454F; /* Charcoal */
+}
