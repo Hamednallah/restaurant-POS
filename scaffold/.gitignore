@@ -1,0 +1,21 @@
+# IDE
+.idea/
+*.iml
+*.iws
+
+# Build
+build/
+.gradle/
+
+# Local files
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+*.orig
+*.rej
+
+# Binary files
+bin/
+*.db
