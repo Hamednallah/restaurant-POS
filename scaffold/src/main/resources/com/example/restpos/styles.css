@@ -1,0 +1,52 @@
+.root {
+    -fx-base: #F5F5DC; /* Beige */
+    -fx-background: #F5F5DC;
+    -fx-control-inner-background: #E3DCD2; /* Almond */
+    -fx-accent: #8B4513; /* SaddleBrown */
+    -fx-default-button: #8B4513;
+    -fx-focus-color: #8B4513;
+    -fx-faint-focus-color: #8B451322;
+    -fx-text-background-color: #36454F; /* Charcoal */
+}
+
+.side-panel {
+    -fx-background-color: #E3DCD2; /* Almond */
+    -fx-border-color: #D2B48C; /* Tan */
+    -fx-border-width: 0 1 0 0;
+    -fx-pref-width: 250px;
+}
+
+.navigation-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #36454F; /* Charcoal */
+    -fx-font-size: 16px;
+    -fx-padding: 15px 25px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.navigation-button:hover {
+    -fx-background-color: #D2B48C; /* Tan */
+}
+
+.navigation-button.selected {
+    -fx-background-color: #8B4513; /* SaddleBrown */
+    -fx-text-fill: white;
+}
+
+.login-screen {
+    -fx-background-color: #F5F5DC; /* Beige */
+}
+
+.login-button {
+    -fx-background-color: #8B4513; /* SaddleBrown */
+    -fx-text-fill: white;
+}
+
+.product-button {
+    -fx-background-color: #D2B48C; /* Tan */
+    -fx-text-fill: #36454F; /* Charcoal */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
